@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const routes = require('./routes');
-const (Sequelize) = require('sequelize')
+const {Sequelize} = require('sequelize')
 const { check, validationResult } = require('express-validator');
 const db = require('./db');
 
