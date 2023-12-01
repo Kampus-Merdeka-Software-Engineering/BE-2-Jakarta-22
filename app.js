@@ -4,19 +4,22 @@ const cors = require('cors');
 const mysql = require('mysql');
 const routes = require('./routes');
 const {Sequelize} = require('sequelize')
-const { check, validationResult } = require('express-validator');
 const db = require('./db');
+const morgan= requaire('morgan');
 
-
+// import models
+const { food } = require('./models');
 const app = express();
-
 const PORT = process.env.PORT || 5000;
-
+// import router
 const router = express.Router();
 
+
+// import middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 app.use((req, res, next) => {
   console.log(`Method: ${req.method} ${req.path}`);
@@ -25,7 +28,8 @@ app.use((req, res, next) => {
 
 routes.forEach((route) => app.use(route));
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// inisialisasi server
+app.listen(port, async () => {
+  console.log(`Server running on port ${port}`);
+  await startSequelize(sequalize);
 });
-
