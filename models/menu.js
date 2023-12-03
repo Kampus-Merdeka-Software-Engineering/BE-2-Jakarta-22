@@ -1,22 +1,18 @@
-// models/feedback.js
+// models/menu.js
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  return sequelize.define('Feedback', {
-    username: {
+  return sequelize.define('Menu', {
+    productName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    message: {
+    descMenu: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING,
+    productPrice: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
   });

@@ -3,13 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const routes = require('./routes');
-const {Sequelize} = require('sequelize')
+const Sequelize = require('./utils/sequelize')
 const db = require('./db');
 const morgan= requaire('morgan');
 
 // import models
 const { food } = require('./models');
 const app = express();
+
 const PORT = process.env.PORT || 5000;
 // import router
 const router = express.Router();
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
   console.log(`Method: ${req.method} ${req.path}`);
   next();
 });
+app.use('/menus', menuRoutes);
+app.use('/feedbacks', feedbackRoutes); // New route for feedbacks
 
 routes.forEach((route) => app.use(route));
 
