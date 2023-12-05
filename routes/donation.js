@@ -1,4 +1,14 @@
-app.get('/donations', async (req, res) => {
+
+const express = require('express');
+const router = express.Router();
+const createDonation = require('../controllers/donationController').createDonation;
+
+router.post('/create', donationController.createDonation);
+router.get('/donation', donationController.getDonation); // Assuming you have a function named `getDonation` in the `donationController`
+
+module.exports = router;
+
+app.get('/donation', async (req, res) => {
     try {
        const donations = await donationService.getAll();
        res.status(200).json(donations);

@@ -1,20 +1,35 @@
-// services/DonationService.js
-class DonationService {
-    constructor(donationModel) {
-       this.donationModel = donationModel;
-    }
-   
-    async getAll() {
-       return await this.donationModel.findAll();
-    }
-   
-    async create(donation) {
-       return await this.donationModel.create(donation);
-    }
-   
-    async delete(id) {
-       return await this.donationModel.destroy({ where: { id } });
-    }
+'use strict';
+const { Donation } = require('../models');
+
+async function getDonation(id) {
+ const donation = await Donation.findByPk(id);
+ return donation;
 }
-   
-module.exports = DonationService;
+
+async function createDonation(donation) {
+ const newDonation = await Donation.create(donation);
+ return newDonation;
+}
+
+async function updateDonation(id, updatedData) {
+ const donation = await getDonation(id);
+ if (!donation) return null;
+
+ await donation.update(updatedData);
+ return donation;
+}
+
+async function deleteDonation(id) {
+ const donation = await getDonation(id);
+ if (!donation) return null;
+
+ await donation.destroy();
+ return donation;
+}
+
+module.exports = {
+ getDonation,
+ createDonation,
+ updateDonation,
+ deleteDonation,
+};
