@@ -1,23 +1,19 @@
 // models/feedback.js
 const { DataTypes } = require('sequelize');
-
-module.exports = (sequelize) => {
-  return sequelize.define('Feedback', {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
+const sequelize =require('../config/connection');
+const Feedback = sequelize.define('Feedback', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    message: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    username: DataTypes.TEXT,
+    email: DataTypes.STRING,
+    category: DataTypes.STRING,
+    message: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   });
-};
+
+
+module.exports =  Feedback;

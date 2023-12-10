@@ -1,5 +1,5 @@
 'use strict';
-const { Donation } = require('../models');
+const { Donation } = require('../models/Donation');
 
 async function getDonation(id) {
  const donation = await Donation.findByPk(id);

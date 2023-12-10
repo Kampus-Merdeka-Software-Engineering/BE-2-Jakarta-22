@@ -1,27 +1,27 @@
-// services/feedbackService.js
-const db = require('../models/index');
+// services/FeedbackService.js
+const  Feedback = require('../models/feedback');
 
 exports.getAllFeedbacks = async () => {
-  return await db.Feedback.findAll();
+  return await Feedback.findAll();
 };
 
 exports.getFeedbackById = async (id) => {
-  return await db.Feedback.findByPk(id);
+  return await Feedback.findByPk(id);
 };
 
-exports.createFeedback = async (feedbackData) => {
-  return await db.Feedback.create(feedbackData);
+exports.createFeedback = async (FeedbackData) => {
+  return await Feedback.create(FeedbackData);
 };
 
-exports.updateFeedback = async (id, feedbackData) => {
-  await db.Feedback.update(feedbackData, {
+exports.updateFeedback = async (id, FeedbackData) => {
+  await Feedback.update(FeedbackData, {
     where: { id },
   });
   return await this.getFeedbackById(id);
 };
 
 exports.deleteFeedback = async (id) => {
-  await db.Feedback.destroy({
+  await Feedback.destroy({
     where: { id },
   });
 };

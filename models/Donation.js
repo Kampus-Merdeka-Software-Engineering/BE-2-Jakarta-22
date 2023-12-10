@@ -1,18 +1,18 @@
-'use strict';
-const { Model } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
- class Donation extends Model {
-    static associate(models) {
-      // define association here
-    }
- }
- Donation.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: DataTypes.STRING,
-    total_price: DataTypes.FLOAT,
- }, {
-    sequelize,
-    modelName: 'Donation',
- });
- return Donation;
-};
+const { DataTypes } = require('sequelize');
+const sequelize =require('../config/connection');
+
+const Donation = sequelize.define('Donation',{
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  name: DataTypes.TEXT,
+  category: DataTypes.STRING,
+  amount: DataTypes.INTEGER,
+  message: DataTypes.TEXT,
+  createdAt: DataTypes.DATE,
+  updatedAt: DataTypes.DATE,
+});
+
+module.exports =  Donation;

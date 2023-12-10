@@ -1,27 +1,27 @@
 // services/menuService.js
-const db = require('../models/index');
+const  Menu = require('../models/menu');
 
 exports.getAllMenus = async () => {
-  return await db.Menu.findAll();
+  return await Menu.findAll();
 };
 
 exports.getMenuById = async (id) => {
-  return await db.Menu.findByPk(id);
+  return await Menu.findByPk(id);
 };
 
 exports.createMenu = async (menuData) => {
-  return await db.Menu.create(menuData);
+  return await Menu.create(menuData);
 };
 
 exports.updateMenu = async (id, menuData) => {
-  await db.Menu.update(menuData, {
+  await Menu.update(menuData, {
     where: { id },
   });
   return await this.getMenuById(id);
 };
 
 exports.deleteMenu = async (id) => {
-  await db.Menu.destroy({
+  await Menu.destroy({
     where: { id },
   });
 };

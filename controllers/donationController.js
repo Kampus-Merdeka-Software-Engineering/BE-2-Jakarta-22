@@ -1,51 +1,47 @@
-'use strict';
-const { getDonation, createDonation, updateDonation, deleteDonation } = require('./services/donationService');
+// controllers/donationController.js
+const donationService = require('../services/donationService');
 
-async function getDonationById(req, res) {
- try {
-    const donation = await getDonation(req.params.id);
-    if (!donation) return res.status(404).send({ message: 'Donation not found' });
+exports.getAlldonations = async (req, res, next) => {
+  try {
+    const donations = await donationService.getAlldonations();
+    res.json(donations);
+  } catch (error) {
+    next(error);
+  }
+};
 
-    res.status(200).send(donation);
- } catch (error) {
-    res.status(500).send({ message: 'Error getting donation' });
- }
-}
+exports.getdonationById = async (req, res, next) => {
+  try {
+    const donation = await donationService.getdonationById(req.params.id);
+    res.json(donation);
+  } catch (error) {
+    next(error);
+  }
+};
 
-async function createDonation(req, res) {
- try {
-    const newDonation = await createDonation(req.body);
-    res.status(201).send(newDonation);
- } catch (error) {
-    res.status(500).send({ message: 'Error creating donation' });
- }
-}
+exports.createdonation = async (req, res, next) => {
+  try {
+    const donation = await donationService.createdonation(req.body);
+    res.json(donation);
+  } catch (error) {
+    next(error);
+  }
+};
 
-async function updateDonation(req, res) {
- try {
-    const updatedDonation = await updateDonation(req.params.id, req.body);
-    if (!updatedDonation) return res.status(404).send({ message: 'Donation not found' });
+exports.updatedonation = async (req, res, next) => {
+  try {
+    const updateddonation = await donationService.updatedonation(req.params.id, req.body);
+    res.json(updateddonation);
+  } catch (error) {
+    next(error);
+  }
+};
 
-    res.status(200).send(updatedDonation);
- } catch (error) {
-    res.status(500).send({ message: 'Error updating donation' });
- }
-}
-
-async function deleteDonation(req, res) {
- try {
-    const deletedDonation = await deleteDonation(req.params.id);
-    if (!deletedDonation) return res.status(404).send({ message: 'Donation not found' });
-
-    res.status(200).send(deletedDonation);
- } catch (error) {
-    res.status(500).send({ message: 'Error deleting donation' });
- }
-}
-
-module.exports = {
- getDonationById,
- createDonation,
- updateDonation,
- deleteDonation,
+exports.deletedonation = async (req, res, next) => {
+  try {
+    await donationService.deletedonation(req.params.id);
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
 };
