@@ -1,7 +1,7 @@
 // models/feedback.js
 const { DataTypes } = require('sequelize');
 const sequelize =require('../config/connection');
-const Feedback = sequelize.define('Feedback', {
+const Feedback = sequelize.define('Feedbacks', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -13,7 +13,6 @@ const Feedback = sequelize.define('Feedback', {
     message: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
-  });
-
+});
 
 module.exports =  Feedback;

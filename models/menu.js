@@ -9,7 +9,7 @@ const Menu = sequelize.define('Menu', {
     autoIncrement: true,
   },
   name: DataTypes.STRING,
-  price: DataTypes.INTEGER,
+  price: DataTypes.STRING,
   description: DataTypes.STRING,
   image: DataTypes.STRING,
   createdAt: DataTypes.DATE,

@@ -14,13 +14,17 @@ const {startSequelize} = require('./utils/sequelize');
 
 // use routes
 const menuRoutes = require('./routes/menuRoutes');
-app.use('/menu', menuRoutes);
+app.use('/menus', menuRoutes);
 
 const feedbackRoutes = require('./routes/feedbackRoutes');
-app.use('/feedback', feedbackRoutes);
+app.use('/feedbacks', feedbackRoutes);
 
 const donationRoutes = require('./routes/donationRoutes');
-app.use('/donation', donationRoutes);
+app.use('/donations', donationRoutes);
+
+// const userRoutes = require('./routes/userRoutes');
+// app.use('/user', userRoutes);
+
 
 //Menjalankan server dan menghubungkannya dengan basis data:
 app.listen(PORT, async () => {
