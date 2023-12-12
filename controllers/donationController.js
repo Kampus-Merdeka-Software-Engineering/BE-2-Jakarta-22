@@ -1,46 +1,55 @@
-// controllers/donationController.js
-const donationService = require('../services/donationService');
+// controllers/DonationController.js
+const DonationService = require('../services/DonationService');
 
-exports.getAlldonations = async (req, res, next) => {
+exports.getAllDonations = async (req, res, next) => {
   try {
-    const donations = await donationService.getAlldonations();
-    res.json(donations);
+    const Donations = await DonationService.getAllDonations();
+    res.json(Donations);
   } catch (error) {
     next(error);
   }
 };
 
-exports.getdonationById = async (req, res, next) => {
+exports.getDonationById = async (req, res, next) => {
   try {
-    const donation = await donationService.getdonationById(req.params.id);
-    res.json(donation);
+    const Donation = await DonationService.getDonationById(req.params.id);
+    res.json(Donation);
   } catch (error) {
     next(error);
   }
 };
 
-exports.createdonation = async (req, res, next) => {
+exports.createDonation = async (req, res, next) => {
   try {
-    const donation = await donationService.createdonation(req.body);
-    res.json(donation);
+    const Donation = await DonationService.createDonation(req.body);
+    res.json(Donation);
   } catch (error) {
     next(error);
   }
 };
 
-exports.updatedonation = async (req, res, next) => {
+exports.updateDonation = async (req, res, next) => {
   try {
-    const updateddonation = await donationService.updatedonation(req.params.id, req.body);
-    res.json(updateddonation);
+    const updatedDonation = await DonationService.updateDonation(req.params.id, req.body);
+    res.json(updatedDonation);
   } catch (error) {
     next(error);
   }
 };
 
-exports.deletedonation = async (req, res, next) => {
+exports.deleteDonation = async (req, res, next) => {
   try {
-    await donationService.deletedonation(req.params.id);
+    await DonationService.deleteDonation(req.params.id);
     res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteDonationById = async (req, res, next) => {
+  try {
+    const Donation = await DonationService.getDonationById(req.params.id);
+    res.json(Donation);
   } catch (error) {
     next(error);
   }

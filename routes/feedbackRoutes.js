@@ -11,7 +11,9 @@ router.get('/:id', feedbackController.getFeedbackById);
 router.post('/', feedbackController.createFeedback);
 //Memperbarui feedback dengan id yang telah ditentukan.
 router.put('/:id', feedbackController.updateFeedback);
+//Menghapus feedback all yang telah ditentukan.
+router.delete('/', feedbackController.deleteFeedback);
 //Menghapus feedback dengan id yang telah ditentukan.
-router.delete('/:id', feedbackController.deleteFeedback);
+router.delete('/:id', feedbackController.deleteFeedbackById);
 
 module.exports = router;

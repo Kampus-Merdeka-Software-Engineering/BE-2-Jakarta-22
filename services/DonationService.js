@@ -1,35 +1,22 @@
-'use strict';
-const { Donation } = require('../models/Donation');
+const  Donation = require('../models/Donation');
 
-async function getDonation(id) {
- const donation = await Donation.findByPk(id);
- return donation;
-}
+exports.getAllDonations = async () => {
+  return await Donation.findAll();
+};
 
-async function createDonation(donation) {
- const newDonation = await Donation.create(donation);
- return newDonation;
-}
+exports.getDonationById = async (id) => {
+  return await Donation.findByPk(id);
+};
 
-async function updateDonation(id, updatedData) {
- const donation = await getDonation(id);
- if (!donation) return null;
+exports.createDonation = async (DonationData) => {
+  return await Donation.create(DonationData);
+};
 
- await donation.update(updatedData);
- return donation;
-}
 
-async function deleteDonation(id) {
- const donation = await getDonation(id);
- if (!donation) return null;
+exports.deleteDonation = async () => {
+  await Donation.truncate();
+};
 
- await donation.destroy();
- return donation;
-}
-
-module.exports = {
- getDonation,
- createDonation,
- updateDonation,
- deleteDonation,
+exports.deleteDonationById = async (id) => {
+  return await Donation.findByPk(id);
 };

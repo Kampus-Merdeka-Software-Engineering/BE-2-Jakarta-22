@@ -1,4 +1,3 @@
-// services/FeedbackService.js
 const  Feedback = require('../models/feedback');
 
 exports.getAllFeedbacks = async () => {
@@ -13,14 +12,12 @@ exports.createFeedback = async (FeedbackData) => {
   return await Feedback.create(FeedbackData);
 };
 
-exports.updateFeedback = async (id, FeedbackData) => {
-  await Feedback.update(FeedbackData, {
-    where: { id },
-  });
-  return await this.getFeedbackById(id);
+
+exports.deleteFeedback = async () => {
+  await Feedback.truncate();
 };
 
-exports.deleteFeedback = async (id) => {
+exports.deleteFeedbackById = async (id) => {
   await Feedback.destroy({
     where: { id },
   });
