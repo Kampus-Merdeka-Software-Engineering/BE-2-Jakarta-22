@@ -1,39 +1,47 @@
 // controllers/menuController.js
 const menuService = require('../services/menuService');
 
-exports.getAllMenus = async (req, res, next) => {
+exports.getAllMenus = async (req, res) => {
   try {
     const menus = await menuService.getAllMenus();
     res.json(menus);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
-exports.getMenuById = async (req, res, next) => {
+exports.getMenuById = async (req, res) => {
   try {
     const menu = await menuService.getMenuById(req.params.id);
     res.json(menu);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
-exports.createMenu = async (req, res, next) => {
+exports.createMenu= async (req, res) => {
+  const { name, price, description, image} = req.body
   try {
-    const menu = await menuService.createMenu(req.body);
-    res.json(menu);
-  } catch (error) {
-    next(error);
+    await FeedbackService.createMenu({
+      name : name,
+      price : price,
+      description : description,
+      image : image
+    })   
+    res.status(201).json({ msg: "Success"})
   }
+  catch (error) {
+  console.error(error)
+   res.status(500).json({ error: "Internal server error" })
+ }
 };
 
-exports.updateMenu = async (req, res, next) => {
+exports.updateMenu = async (req, res) => {
   try {
     const updatedMenu = await menuService.updateMenu(req.params.id, req.body);
     res.json(updatedMenu);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
@@ -41,7 +49,7 @@ exports.deleteMenu = async (req, res, next) => {
   try {
     await menuService.deleteMenu(req.params.id);
     res.sendStatus(204);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };

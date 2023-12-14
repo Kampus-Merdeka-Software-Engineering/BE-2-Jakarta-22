@@ -18,5 +18,7 @@ exports.deleteDonation = async () => {
 };
 
 exports.deleteDonationById = async (id) => {
-  return await Donation.findByPk(id);
+  await Donation.destroy({
+    where: { id },
+  });
 };
